@@ -1,4 +1,5 @@
 import React from 'react'
+import NumberFormat from 'react-number-format'
 import { Link } from 'react-router-dom'
 
 const ItemProduct = ({id, title, price, condition,city, thumbnail}) => {
@@ -10,10 +11,12 @@ const ItemProduct = ({id, title, price, condition,city, thumbnail}) => {
         </div>
         <div className='col-8'>
           <div className='card-body'>
-              <h5 className='card-title' >{price}</h5>
+              <h5 className='card-title' >
+                <NumberFormat value={price} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+              </h5>
               <p className='card-text'>{title}</p>
               <p className='card-text'>{condition}</p>
-              <Link to={`/item/${id}`}>
+              <Link to={`/items/${id}`}>
                 Ver más..
               </Link>
           </div>

@@ -6,7 +6,7 @@ export const getProductsByName = async (name = '') =>{
          .then(response => {
            return response.json();
          })
-         .then(({results}) => {
+         .then(({results,filters}) => {
              products = results.slice(0,4).map( prod =>{
              return {
                   id : prod.id,
@@ -14,10 +14,23 @@ export const getProductsByName = async (name = '') =>{
                   price: prod.price,
                   condition: prod.condition,
                   city : prod.address ? prod.address.city_name : '',
-                  thumbnail: prod.thumbnail,
+                  thumbnail: prod.thumbnail
                  }
             });
+            products.categories = setCategories(filters)
           });
           console.log(products);
     return products;
+}
+
+
+const setCategories = (filters = []) =>{
+  let newCategories = [];
+  if (filters.length !== 0)
+  {
+    const categoriesFromApi = filters.find(x=>x.id === 'category').values[0].path_from_root.map(category => category);
+    const uniqueSet = new Set(categoriesFromApi);
+    newCategories = [...uniqueSet];
+  }
+  return newCategories;
 }

@@ -8,18 +8,16 @@ import { useFetchProducts } from '../hooks/useFetchProducts';
 const InputSearch = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {q = ''} = queryString.parse(location.search);
+  const {search = ''} = queryString.parse(location.search);
   const [ formValues, handleInputChange ] = useForm({
-    searchText : q
+    searchText : search
   });
   const {searchText} = formValues;
-
-
-  const {data: products, isLoading} = useFetchProducts(q);
-  
+  const {data: products, isLoading} = useFetchProducts(search);
+  console.log(products);
   const handleSubmit = (e) =>{
     e.preventDefault();
-    navigate(`?q=${searchText}`);
+    navigate(`?search=${searchText}`);
     console.log(searchText);
   }
 
@@ -47,22 +45,39 @@ const InputSearch = () => {
         </form>
         </div>
         <div className='row'>
+        <nav style={{'--bs-breadcrumb-divider': '">"'}} aria-label="breadcrumb">
+          <ol className="breadcrumb">
+          { 
+          (products.length !== 0) &&
+          (products.categories.length !== 0) &&
+            products.categories.map( cate => (
+                <li 
+                  className='breadcrumb-item active'
+                  aria-current="page"
+                  key={cate.id}>
+                  {cate.name}
+                </li>  
+              )
+              )
+          }
+           </ol>
+          </nav>
+        </div>
+        <div className='row'>
         { isLoading && <p>Loading...</p>}
         {
-          (q === '')
+          (search === '')
             ? <div className='alert alert-info mt-2'>Digita un criterio de búsqueda</div>
             : ( products.length === 0)
-              && <div className='alert alert-danger mt-2'>No se encontraron resultados asociados a: {q}</div>
+            ? <div className='alert alert-danger mt-2'>No se encontraron resultados asociados a: {search}</div>
+            : products.map(prod=> (
+              <ItemProduct 
+                       key={prod.id}
+                       {...prod}
+               />
+             )
+             )
         }
-        {
-            products.map(prod=> (
-             <ItemProduct 
-                      key={prod.id}
-                      {...prod}
-              />
-            )
-            )
-          }
         </div>
       </>
   )

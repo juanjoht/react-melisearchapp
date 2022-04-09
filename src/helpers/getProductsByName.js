@@ -12,7 +12,7 @@ export const getProductsByName = async (name = '') =>{
                   id : prod.id,
                   title: prod.title,
                   price: prod.price,
-                  condition: prod.condition,
+                  condition: prod.condition === 'new'? 'Nuevo': prod.condition,
                   city : prod.address ? prod.address.city_name : '',
                   thumbnail: prod.thumbnail
                  }

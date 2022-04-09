@@ -12,9 +12,8 @@ export const getProductById = async (id = '') =>{
                 Object.assign(productDetail, {
                     id : data.id,
                     title: data.title,
-                    //description: data.descriptions.length !== 0 ? data.descriptions[0] : data.title,
                     price: data.price,
-                    condition: data.condition,
+                    condition: data.condition === 'new'? 'Nuevo': data.condition,
                     picture: data.pictures.length !== 0 ? data.pictures[0].url : data.thumbnail,
                     amountSold : data.sold_quantity,
                     categoryId : data.category_id, 

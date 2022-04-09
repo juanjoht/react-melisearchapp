@@ -3,16 +3,14 @@ import { getProductsByName } from "../helpers/getProductsByName";
 
 export const useFetchProducts = (name) => {
     const [stateProducts, setStateProducts] = useState({
-        data: [],
-        isLoading: true
+        data: []
     })
     useEffect( () =>{ 
         getProductsByName(name)
             .then(products =>{
                 setStateProducts(
                     { 
-                        data: products,
-                        isLoading:false
+                        data: products
                     }
                 )
             }) 

@@ -19,7 +19,6 @@ function Product() {
         getProductDescription(id).then(descr =>{ 
           if (descr){
             setProductDescription(descr);
-            console.log(descr.text)
           }
         });  
         getCategoriesById(prod.categoryId,prod.brand,prod.line).then(cate =>{ 
@@ -30,12 +29,6 @@ function Product() {
       }
     });
   }, [id]);
-
-  
-
-  console.log('call getProductById ')
-
-
 
   /*if(Object.keys(product).length === 0){
      return <Navigate to='/'/>

@@ -1,0 +1,19 @@
+.search__main{
+    align-items: center;
+    background-color: $yellow;
+    display: flex;
+    justify-content: center;
+}
+
+.search__nav-logo
+{
+    background-image: url(https://http2.mlstatic.com/frontend-assets/ui-navigation/5.18.9/mercadolibre/logo__small.png);
+    background-repeat: no-repeat;
+    height: 28px;
+    overflow: hidden;
+    text-indent: -999px;
+    width: 39px;
+    top: 11px;
+    position: absolute;
+    left: -40px;
+}

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import InputSearch from '../components/InputSearch';
-import ListProduct from '../components/ListProduct';
-import Product from '../components/Product';
+import Product from '../pages/Product/Product';
+import ListProduct from '../pages/Products/ListProduct';
+import InputSearch from '../pages/Search/InputSearch';
 
 export const AppRouter = () => {
   return (

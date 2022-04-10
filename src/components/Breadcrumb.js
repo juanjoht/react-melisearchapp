@@ -7,6 +7,6 @@ export  const Breadcrumb = ({id,name}) => {
             aria-current="page"
             key={id}>
             {name}
-        </div>  
+        </div>
   )
 }

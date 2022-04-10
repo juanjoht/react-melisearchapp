@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from 'query-string'
-import { useForm } from '../hooks/useForm'
+import { useForm } from '../../hooks/useForm'
 
 const InputSearch = () => {
   const navigate = useNavigate();
@@ -20,8 +20,10 @@ const InputSearch = () => {
 
   return (
     <>
-    <nav className="navbar navbar-dark bg-dark">
+    <div className='search__main'>
+    <nav className="navbar  w-50  navbar-dark">
       <form className='container-fluid' onSubmit={ handleSubmit }>
+      <a className="search__nav-logo" href="/">Mercado Libre Colombia - Donde comprar y vender de todo</a>
           <div className='input-group'>
               <input
                 type="text"
@@ -39,7 +41,7 @@ const InputSearch = () => {
           </div>
        </form>
      </nav>
-     
+     </div>
       </>
   )
 }
